@@ -35,6 +35,7 @@ const EventBanner = () => {
           <img src="/path/to/image2.jpg" alt="이벤트2" />
         </BannerItem>
         {/* 여기에 더 많은 배너 아이템을 추가할 수 있습니다. */}
+        
       </Slider>
     </BannerContainer>
   );
