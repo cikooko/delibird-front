@@ -43,7 +43,7 @@ const StorePage = () => {
       const page = 1;
       const size = 10;
       try {
-        const response = await fetch(`http://api.delibird.store/stores?page=${page}&size=${size}&sort=${sortOrder}&categoryId=${selectedCategory.id}`);
+        const response = await fetch(`http://api.delibird.store/stores?page=${page}&size=${size}&sort=${sortOrder}&categoryId=${selectedCategory.id}`, {credentials: "include"});
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
