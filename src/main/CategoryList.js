@@ -35,7 +35,7 @@ const CategoryList = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('/categories');
+        const response = await fetch('http://api.delibird.store/categories');
         const data = await response.json();
         setCategories(data);
       } catch (error) {

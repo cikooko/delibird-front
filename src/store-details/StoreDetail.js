@@ -15,7 +15,7 @@ const StoreDetail = () => {
   useEffect(() => {
     const fetchStoreDetail = async () => {
       try {
-        const response = await fetch(`/stores/${storeId}`);
+        const response = await fetch(`http://api.delibird.store/stores/${storeId}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

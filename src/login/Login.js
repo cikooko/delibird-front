@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 function Login() {
   const handleTestLogin = async () => {
     try {
-      const response = await fetch('/login/dev', {
+      const response = await fetch('http://api.delibird.store/login/dev', {
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json',
