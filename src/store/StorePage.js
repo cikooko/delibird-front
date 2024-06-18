@@ -1,40 +1,51 @@
-// StorePage.js
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Header from './Header';
+import Header from '../header/Header'
 import CategorySelector from './CategorySelector';
 import FilterOptions from './FilterOptions';
 import StoreBox from './StoreBox';
 
-const categoryMapping = {
-  dessert: { name: '디저트', id: '1'},
-  japanese: { name: '돈까스/일식', id: '2'},
-  pizza: { name: '피자', id: '3'},
-  burger: { name: '버거', id: '4'},
-  asian: { name: '중식/아시안', id: '5' },
-  fastfood: { name: '패스트푸드', id: '6'},
-  backban: { name: '백반/죽', id: '7' },
-  late: { name: '야식', id: '9'},
-  western: { name: '양식', id: '8'},
-  sandwich: { name: '샌드위치', id: '10'},
-  chicken: { name: '치킨', id: '11'},
-  cafe: { name: '카페', id: '12'},
-};
-
-const categories = Object.values(categoryMapping).map(category => category.name);
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
 const StorePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [sortOrder, setSortOrder] = useState('name,desc');
+  const [sortOrder, setSortOrder] = useState('deliveryFees,asc');
   const [stores, setStores] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const categoryParam = params.get('category');
-    const matchedCategory = Object.keys(categoryMapping).find(key => key === categoryParam);
-    setSelectedCategory(matchedCategory ? categoryMapping[matchedCategory] : null);
+
+    // 카테고리 정보 가져오기
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(`http://api.delibird.store/categories`, {
+          credentials: "include",
+          headers: {
+            "Auth": getCookie("Auth")
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setCategories(data);
+
+        // 선택된 카테고리 설정
+        const matchedCategory = data.find(category => category.name === categoryParam);
+        setSelectedCategory(matchedCategory || null);
+      } catch (error) {
+        console.error('Fetching categories failed:', error);
+      }
+    };
+    fetchCategories();
   }, [location]);
 
   useEffect(() => {
@@ -43,7 +54,12 @@ const StorePage = () => {
       const page = 1;
       const size = 10;
       try {
-        const response = await fetch(`http://api.delibird.store/stores?page=${page}&size=${size}&sort=${sortOrder}&categoryId=${selectedCategory.id}`, {credentials: "include"});
+        const response = await fetch(`http://api.delibird.store/stores?page=${page}&size=${size}&sort=${sortOrder}&categoryId=${selectedCategory.id}`, {
+          credentials: "include",
+          headers: {
+            "Auth": getCookie("Auth")
+          },
+        });
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -58,7 +74,7 @@ const StorePage = () => {
   }, [selectedCategory, sortOrder]);
 
   const toggleSortOrder = () => {
-    setSortOrder(prevSortOrder => (prevSortOrder === 'name,desc' ? 'deliveryFees,asc' : 'name,desc'));
+    setSortOrder(prevSortOrder => (prevSortOrder === 'deliveryFees,asc' ? 'name,desc' : 'deliveryFees,asc'));
   };
 
   const handleStoreClick = (storeId) => {
@@ -69,11 +85,11 @@ const StorePage = () => {
     <div className="container">
       <Header address="서울시 강남구" name="홍길동" />
       <CategorySelector
-        categories={categories}
+        categories={categories.map(category => category.name)}
         selectedCategory={selectedCategory ? selectedCategory.name : null}
         onSelectCategory={(categoryName) => {
-          const categoryKey = Object.keys(categoryMapping).find(key => categoryMapping[key].name === categoryName);
-          setSelectedCategory(categoryMapping[categoryKey]);
+          const selectedCategory = categories.find(category => category.name === categoryName);
+          setSelectedCategory(selectedCategory);
         }}
       />
       <FilterOptions sortOrder={sortOrder} onToggleSortOrder={toggleSortOrder} />
@@ -81,7 +97,7 @@ const StorePage = () => {
         {stores.length > 0 ? (
           stores.map(store => (
             <div key={store.id} onClick={() => handleStoreClick(store.id)} style={{ cursor: 'pointer' }}>
-              <StoreBox store={store} />
+              <StoreBox store={{ ...store, imageUrl: encodeURIComponent(store.imageUrl) }} />
             </div>
           ))
         ) : (

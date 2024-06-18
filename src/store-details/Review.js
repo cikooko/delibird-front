@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react';
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 const Review = ({ storeId }) => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch(`http://api.delibird.store/reviews/${storeId}`);
+        const response = await fetch(`http://api.delibird.store/reviews/${storeId}`, {
+          credentials: 'include',
+          headers: {
+            "Auth": getCookie("Auth")
+          },
+        });
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

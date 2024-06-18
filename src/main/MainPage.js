@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import Header from '../header/Header'
 import CategoryList from './CategoryList';
 import SearchBar from './SearchBar';
 import EventBanner from './EventBanner';

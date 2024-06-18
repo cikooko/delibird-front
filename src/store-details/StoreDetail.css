@@ -71,13 +71,25 @@
   margin-bottom: 10px;
 }
 
-.menu-image, .review-image {
-  flex: 1;
-  background-color: #f0f0f0;
-  height: 100px;
-}
-
 .menu-description, .review-content {
   flex: 2;
   margin-left: 20px;
+}
+
+.image-size-default {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.image-size-small {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.image-size-large {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
 }

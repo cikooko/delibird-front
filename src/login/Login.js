@@ -4,22 +4,26 @@ import naverLoginImg from '../img/login/naver.jpg';
 import kakaoLoginImg from '../img/login/kakao.jpg';
 import googleLoginImg from '../img/login/google.jpg';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate();
+
   const handleTestLogin = async () => {
     try {
-      const response = await fetch('http://api.delibird.store/login/dev', {
+      const response = await fetch(`http://api.delibird.store/login/dev`, {
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
+        credentials: 'include',
       });
   
       if (response.ok) {
         const authToken = response.headers.get('Auth');
         if (authToken) {
           Cookies.set('Auth', authToken, { path: '/' }, { sameSite: 'None' });
-          window.location.href = '/'; 
+          navigate('/'); // 홈 화면으로 이동
         } else {
           console.error('Auth token not found in response headers.');
         }
@@ -29,6 +33,10 @@ function Login() {
     } catch (error) {
       console.error('Error occurred while logging in:', error);
     }
+  };
+
+  const handleGoBack = () => {
+    navigate(-1); // 이전 화면으로 이동
   };
 
   return (
@@ -48,7 +56,7 @@ function Login() {
         </div>
         <div style={{ marginTop: '50px' }}>
           <h4>
-            <a href="http://localhost:3000" className="font-shadow">
+            <a href="#" onClick={handleGoBack} className="font-shadow">
               ← 돌아가기
             </a>
           </h4>

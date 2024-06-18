@@ -6,7 +6,16 @@ const Menu = ({ products, onAddToOrder }) => (
     {products.map((product) => (
       <div className="menu-item" key={product.id}>
         <div className="menu-image">
-          {product.image ? <img src={product.image} alt={product.name} /> : '이미지 준비중'}
+          {product.image ? (
+            <img
+              src={"http://api.delibird.store" + product.image}
+              alt={product.name}
+              className={`image-size-${product.imageSize || 'default'}`}
+              onError={(e) => {e.currentTarget.src = "https://zrr.kr/acvx"}}
+            />
+          ) : (
+            '이미지 준비중'
+          )}
         </div>
         <div className="menu-description">
           <h3>{product.name ? product.name : '이름 미정'}</h3>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../header/Header'
-import StoreDetail from './StoreDetail';
+import OrderAndMenu from './OrderAndMenu';
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -9,7 +9,7 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-const StoreDetailPage = () => {
+const OrderPage = () => {
   const { storeId } = useParams();
   const [store, setStore] = useState(null);
 
@@ -39,7 +39,7 @@ const StoreDetailPage = () => {
     <div className="container">
       <Header address="서울시 강남구" headerTitle="홍길동" />
       {store ? (
-        <StoreDetail store={store} />
+        <OrderAndMenu store={store} />
       ) : (
         <p>매장 정보를 불러오는 중...</p>
       )}
@@ -47,4 +47,4 @@ const StoreDetailPage = () => {
   );
 };
 
-export default StoreDetailPage;
+export default OrderPage;

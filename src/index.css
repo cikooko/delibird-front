@@ -40,6 +40,8 @@ header {
   cursor: pointer;
   color: gray; /* 기본 글씨색 회색 */
   margin-top: 15px;
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
 }
 
 .category-button.active {
