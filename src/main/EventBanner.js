@@ -13,6 +13,7 @@ const BannerItem = styled.div`
   img {
     width: 100%;
     height: auto;
+    padding-bottom: 50px;
   }
 `;
 
@@ -29,10 +30,10 @@ const EventBanner = () => {
     <BannerContainer>
       <Slider {...settings}>
         <BannerItem>
-          <img src="/path/to/image1.jpg" alt="이벤트1" />
+          <img src="https://url.kr/849R6z" height={300} alt="이벤트1" />
         </BannerItem>
         <BannerItem>
-          <img src="/path/to/image2.jpg" alt="이벤트2" />
+          <img src="https://url.kr/lI5bG5" alt="이벤트2" />
         </BannerItem>
         {/* 여기에 더 많은 배너 아이템을 추가할 수 있습니다. */}
         

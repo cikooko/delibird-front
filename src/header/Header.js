@@ -60,6 +60,7 @@ const Header = () => {
     const fetchUserInfo = async () => {
       try {
         const authToken = Cookies.get('Auth');
+        console.log(authToken);
         if (authToken) {
           const response = await fetch(`http://api.delibird.store/users`, {
             credentials: 'include',
@@ -99,9 +100,14 @@ const Header = () => {
     setShowLogoutModal(false);
   };
 
+  const handleLogoClick = () => {
+    navigate('/');
+    // window.location.href = '/'; // React Router를 사용하지 않는 경우
+  };
+
   return (
     <HeaderContainer>
-      <Logo src={logoImage} alt="로고" />
+      <Logo src={logoImage} alt="로고" onClick={handleLogoClick} style={{ cursor: 'pointer' }} />
       {userInfo ? (
         <div>
           <HeaderLink to="/users">내 정보</HeaderLink>
