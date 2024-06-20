@@ -73,8 +73,8 @@ const StorePage = () => {
     fetchStoresByCategory();
   }, [selectedCategory, sortOrder]);
 
-  const toggleSortOrder = () => {
-    setSortOrder(prevSortOrder => (prevSortOrder === 'deliveryFees,asc' ? 'name,desc' : 'deliveryFees,asc'));
+  const toggleSortOrder = () => { // 배달료 순으로 정렬 기능
+    setSortOrder(prevSortOrder => (prevSortOrder === 'deliveryFees,asc' ? 'deliveryFees,desc' : 'deliveryFees,asc'));
   };
 
   const handleStoreClick = (storeId) => {
@@ -83,7 +83,7 @@ const StorePage = () => {
 
   return (
     <div className="container">
-      <Header address="서울시 강남구" name="홍길동" />
+      <Header/>
       <CategorySelector
         categories={categories.map(category => category.name)}
         selectedCategory={selectedCategory ? selectedCategory.name : null}

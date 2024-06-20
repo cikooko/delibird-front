@@ -5,8 +5,7 @@ import styled from 'styled-components';
 const CategoryContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-  padding: 20px;
+  padding: 0 100px;
   justify-items: center;
   align-items: center;
 `;

@@ -36,17 +36,3 @@
     transform: rotate(360deg);
   }
 }
-/* store */
-.store-card {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.store-card img {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-}

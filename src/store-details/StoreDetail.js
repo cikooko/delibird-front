@@ -62,38 +62,7 @@ const StoreDetail = () => {
   };
 
   const handleGoToOrder = () => {
-    saveCartToServer();
-    navigate(`/order/${storeId}`, { state: { orderItems } });
-  };
-
-  const saveCartToServer = async () => {
-    try {
-      const cartData = {
-        storeId: store.id,
-        productQuantityMap: orderItems.reduce((map, item) => {
-          map[item.id] = item.quantity;
-          return map;
-        }, {}),
-      };
-
-      const response = await fetch('http://api/delibird.store/cart', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          "Auth": getCookie("Auth"),
-        },
-        body: JSON.stringify(cartData),
-        credentials: 'include',
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      console.log('Cart saved successfully');
-    } catch (error) {
-      console.error('Saving cart failed:', error);
-    }
+    navigate(`/orderpage`, { state: { orderItems } });
   };
 
   if (!store) {
@@ -110,7 +79,6 @@ const StoreDetail = () => {
     <div className="store-container">
       <div className="store-detail">
         <div className="store-box">
-          <img src={store.logoImage} className="store-image" width={500} />
           <div className="store-description">
             <h1>{store.name}</h1>
             <p>{store.description}</p>
@@ -118,12 +86,14 @@ const StoreDetail = () => {
             <p>전화번호: {store.tel}</p>
             <p>배달비: {store.deliveryFees}원</p>
           </div>
+          <img src={store.logoImage} className="store-image" width={500} />
         </div>
         <OrderBox
           orderItems={orderItems}
           onRemoveFromOrder={handleRemoveFromOrder}
           onUpdateOrderQuantity={handleUpdateOrderQuantity}
           onGoToOrder={handleGoToOrder}
+          storeId={storeId}
         />
       </div>
       <Tabs currentTab={currentTab} setCurrentTab={setCurrentTab} />

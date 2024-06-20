@@ -13,7 +13,7 @@ const BannerItem = styled.div`
   img {
     width: 100%;
     height: auto;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
   }
 `;
 

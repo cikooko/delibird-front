@@ -37,7 +37,7 @@ const StoreDetailPage = () => {
 
   return (
     <div className="container">
-      <Header address="서울시 강남구" headerTitle="홍길동" />
+      <Header/>
       {store ? (
         <StoreDetail store={store} />
       ) : (

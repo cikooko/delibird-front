@@ -21,6 +21,7 @@ const Menu = ({ products, onAddToOrder }) => (
           <h3>{product.name ? product.name : '이름 미정'}</h3>
           <p>{product.description}</p>
           <p>가격: {product.price}원</p>
+          <p>남은 수량: {product.quantity}개</p>
           <button onClick={() => onAddToOrder(product)}>추가</button>
         </div>
       </div>
