@@ -15,7 +15,7 @@ function Users() {
       try {
         const authToken = Cookies.get('Auth');
         if (authToken) {
-          const response = await fetch(`http://api.delibird.store/users`, {
+          const response = await fetch(`https://api.delibird.store/users`, {
             credentials: 'include',
             headers: {
               "Auth": getCookie("Auth")

@@ -5,7 +5,7 @@ const Order = () => {
   const [cart, setCart] = useState([
     {
       id: 1,
-      image: 'http://api.delibird.store/menu1.jpg',
+      image: 'https://api.delibird.store/menu1.jpg',
       name: '치킨 버거',
       description: '바삭한 치킨 패티와 신선한 야채',
       price: 7000,
@@ -14,7 +14,7 @@ const Order = () => {
     },
     {
       id: 2,
-      image: 'http://api.delibird.store/menu2.jpg',
+      image: 'https://api.delibird.store/menu2.jpg',
       name: '콜라',
       description: '시원한 탄산음료',
       price: 2000,

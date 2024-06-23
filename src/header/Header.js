@@ -62,7 +62,7 @@ const Header = () => {
         const authToken = Cookies.get('Auth');
         console.log(authToken);
         if (authToken) {
-          const response = await fetch(`http://api.delibird.store/users`, {
+          const response = await fetch(`https://api.delibird.store/users`, {
             credentials: 'include',
             headers: {
               "Auth": Cookies.get("Auth")

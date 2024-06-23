@@ -26,7 +26,7 @@ const StorePage = () => {
     // 카테고리 정보 가져오기
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`http://api.delibird.store/categories`, {
+        const response = await fetch(`https://api.delibird.store/categories`, {
           credentials: "include",
           headers: {
             "Auth": getCookie("Auth")
@@ -54,7 +54,7 @@ const StorePage = () => {
       const page = 1;
       const size = 10;
       try {
-        const response = await fetch(`http://api.delibird.store/stores?page=${page}&size=${size}&sort=${sortOrder}&categoryId=${selectedCategory.id}`, {
+        const response = await fetch(`https://api.delibird.store/stores?page=${page}&size=${size}&sort=${sortOrder}&categoryId=${selectedCategory.id}`, {
           credentials: "include",
           headers: {
             "Auth": getCookie("Auth")

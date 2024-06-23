@@ -16,7 +16,7 @@ const StoreDetailPage = () => {
   useEffect(() => {
     const fetchStoreDetails = async () => {
       try {
-        const response = await fetch(`http://api.delibird.store/stores/${storeId}`, {
+        const response = await fetch(`https://api.delibird.store/stores/${storeId}`, {
           credentials: 'include',
           headers: {
             "Auth": getCookie("Auth")

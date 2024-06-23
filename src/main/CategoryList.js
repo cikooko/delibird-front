@@ -34,7 +34,7 @@ const CategoryList = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`http://api.delibird.store/categories`, {
+        const response = await fetch(`https://api.delibird.store/categories`, {
           credentials: 'include',
         });
         const data = await response.json();
@@ -55,7 +55,7 @@ const CategoryList = () => {
     <CategoryContainer>
       {categories.map((category, index) => (
         <CategoryItem key={index} onClick={() => handleCategoryClick(category.name)}>
-          <StyledImage src={`http://api.delibird.store${category.image}`} alt={category.name} />
+          <StyledImage src={`https://api.delibird.store${category.image}`} alt={category.name} />
         </CategoryItem>
       ))}
     </CategoryContainer>

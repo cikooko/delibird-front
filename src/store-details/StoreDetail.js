@@ -23,7 +23,7 @@ const StoreDetail = () => {
   useEffect(() => {
     const fetchStoreDetail = async () => {
       try {
-        const response = await fetch(`http://api.delibird.store/stores/${storeId}`, {
+        const response = await fetch(`https://api.delibird.store/stores/${storeId}`, {
           credentials: 'include',
           headers: {
             "Auth": getCookie("Auth")
@@ -72,7 +72,7 @@ const StoreDetail = () => {
   if (!store.logoImage || store.logoImage.length === 0) {
     store.logoImage = "https://zrr.kr/acvx";
   } else if (!store.logoImage.startsWith("http://") && !store.logoImage.startsWith("https://")) {
-    store.logoImage = "http://api.delibird.store" + store.logoImage;
+    store.logoImage = "https://api.delibird.store" + store.logoImage;
   }
 
   return (

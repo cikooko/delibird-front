@@ -8,7 +8,7 @@ const Menu = ({ products, onAddToOrder }) => (
         <div className="menu-image">
           {product.image ? (
             <img
-              src={"http://api.delibird.store" + product.image}
+              src={"https://api.delibird.store" + product.image}
               alt={product.name}
               className={`image-size-${product.imageSize || 'default'}`}
               onError={(e) => {e.currentTarget.src = "https://zrr.kr/acvx"}}

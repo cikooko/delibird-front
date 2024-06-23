@@ -12,7 +12,7 @@ const Review = ({ storeId }) => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch(`http://api.delibird.store/reviews/${storeId}`, {
+        const response = await fetch(`https://api.delibird.store/reviews/${storeId}`, {
           credentials: 'include',
           headers: {
             "Auth": getCookie("Auth")

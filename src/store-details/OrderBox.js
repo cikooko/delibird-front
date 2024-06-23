@@ -22,7 +22,7 @@ const OrderBox = ({
     });
 
     try {
-      const response = await fetch(`http://api.delibird.store/cart`, {
+      const response = await fetch(`https://api.delibird.store/cart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

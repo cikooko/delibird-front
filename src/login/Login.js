@@ -11,7 +11,7 @@ function Login() {
 
   const handleTestLogin = async () => {
     try {
-      const response = await fetch(`http://api.delibird.store/login/dev`, {
+      const response = await fetch(`https://api.delibird.store/login/dev`, {
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json',
@@ -49,9 +49,9 @@ function Login() {
         <h3 className="font-shadow">Login Here</h3>
         <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', marginTop: '30px' }}>
           <div style={{ width: '70%' }}>
-            <img className="login_btn" src={naverLoginImg} onClick={() => window.location.href='http://api.delibird.store/oauth2/authorization/naver'} alt="네이버 로그인" />
-            <img className="login_btn" src={kakaoLoginImg} onClick={() => window.location.href='http://api.delibird.store/oauth2/authorization/kakao'} alt="카카오 로그인" />
-            <img className="login_btn" src={googleLoginImg} onClick={() => window.location.href='http://api.delibird.store/oauth2/authorization/google'} alt="구글 로그인" />
+            <img className="login_btn" src={naverLoginImg} onClick={() => window.location.href='https://api.delibird.store/oauth2/authorization/naver'} alt="네이버 로그인" />
+            <img className="login_btn" src={kakaoLoginImg} onClick={() => window.location.href='https://api.delibird.store/oauth2/authorization/kakao'} alt="카카오 로그인" />
+            <img className="login_btn" src={googleLoginImg} onClick={() => window.location.href='https://api.delibird.store/oauth2/authorization/google'} alt="구글 로그인" />
           </div>
         </div>
         <div style={{ marginTop: '50px' }}>
